@@ -1110,3 +1110,238 @@ section,
 .modal-box {
   max-width: 100%;
 }
+
+/* ============================================================
+   FINAL VIDEO / THUMBNAIL PRESENTATION LAYER
+   ============================================================ */
+
+/* Drive thumbnails: show the actual frame instead of the grey placeholder. */
+.skill-zone .thumb {
+  position: relative !important;
+  overflow: hidden !important;
+  background: #e7dece !important;
+}
+
+.skill-zone .thumb.has-thumbnail {
+  background: #111 !important;
+}
+
+.skill-zone .thumb.has-thumbnail:before {
+  display: none !important;
+}
+
+.skill-zone .thumb img {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* Subtle play affordance on portfolio thumbnails. */
+.skill-zone .thumb.has-thumbnail:after {
+  content: "▶";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 46px;
+  height: 46px;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(7,16,11,.78);
+  color: #fff;
+  font-size: 15px;
+  line-height: 1;
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,.22);
+}
+
+@media (hover:hover) {
+  .skill-zone .card:hover .thumb.has-thumbnail:after {
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+/* ---------- Modal base ---------- */
+body.modal-open {
+  overflow: hidden !important;
+}
+
+.modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1000 !important;
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: clamp(12px, 2vw, 28px) !important;
+  background: rgba(7,16,11,.84) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.modal.open {
+  display: flex !important;
+}
+
+/* ---------- Horizontal videos ---------- */
+.modal-box,
+.modal.is-horizontal .modal-box {
+  width: min(1120px, calc(100vw - 40px)) !important;
+  max-width: 1120px !important;
+  max-height: calc(100vh - 40px) !important;
+  margin: auto !important;
+  background: var(--paper) !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  box-shadow: 0 30px 100px rgba(0,0,0,.45) !important;
+}
+
+.modal.is-horizontal .video-box {
+  width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  height: auto !important;
+  max-height: none !important;
+  padding: 0 !important;
+  position: relative !important;
+  display: block !important;
+  overflow: hidden !important;
+  background: #000 !important;
+}
+
+/* ---------- Vertical reels / shorts ---------- */
+.modal.is-vertical .modal-box {
+  width: min(520px, calc(100vw - 32px)) !important;
+  max-width: 520px !important;
+  max-height: calc(100vh - 28px) !important;
+  border-radius: 24px !important;
+}
+
+.modal.is-vertical .video-box {
+  width: 100% !important;
+  aspect-ratio: 9 / 16 !important;
+  height: auto !important;
+  max-height: calc(100vh - 96px) !important;
+  padding: 0 !important;
+  position: relative !important;
+  display: block !important;
+  overflow: hidden !important;
+  background: #000 !important;
+}
+
+.modal.is-horizontal .video-box iframe,
+.modal.is-vertical .video-box iframe {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  border: 0 !important;
+  background: #000 !important;
+}
+
+.modal.is-vertical .modal-head {
+  min-height: 58px;
+  padding: 11px 15px !important;
+}
+
+.modal.is-vertical .modal-head strong {
+  font-size: clamp(17px, 2vw, 22px) !important;
+}
+
+/* ---------- Responsive modal ---------- */
+@media (min-width: 1400px) {
+  .modal.is-horizontal .modal-box {
+    width: min(1240px, calc(100vw - 80px)) !important;
+    max-width: 1240px !important;
+  }
+
+  .modal.is-vertical .modal-box {
+    width: min(540px, calc(100vw - 80px)) !important;
+    max-width: 540px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .modal {
+    padding: 8px !important;
+  }
+
+  .modal.is-horizontal .modal-box {
+    width: calc(100vw - 16px) !important;
+    max-width: none !important;
+    border-radius: 18px !important;
+  }
+
+  .modal.is-horizontal .video-box {
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  .modal.is-vertical .modal-box {
+    width: min(94vw, 430px) !important;
+    max-width: 430px !important;
+    max-height: calc(100vh - 16px) !important;
+    border-radius: 18px !important;
+  }
+
+  .modal.is-vertical .video-box {
+    aspect-ratio: 9 / 16 !important;
+    max-height: calc(100vh - 70px) !important;
+  }
+
+  .modal-head {
+    min-height: 54px !important;
+    padding: 10px 12px !important;
+  }
+
+  .modal-head strong {
+    font-size: 17px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .modal {
+    padding: 6px !important;
+  }
+
+  .modal.is-horizontal .modal-box {
+    width: calc(100vw - 12px) !important;
+    border-radius: 15px !important;
+  }
+
+  .modal.is-vertical .modal-box {
+    width: min(94vw, 390px) !important;
+    border-radius: 15px !important;
+  }
+
+  .modal.is-vertical .video-box {
+    max-height: calc(100vh - 64px) !important;
+  }
+
+  .modal-head {
+    min-height: 50px !important;
+    padding: 8px 10px !important;
+  }
+
+  .modal-head strong {
+    font-size: 15px !important;
+  }
+
+  .close {
+    padding: 8px 11px !important;
+    font-size: 11px;
+  }
+}
+
+/* On touch screens don't exaggerate hover effects. */
+@media (hover: none) {
+  .skill-zone .thumb.has-thumbnail:after {
+    transform: translate(-50%, -50%);
+  }
+}
