@@ -734,3 +734,379 @@ body{
     padding:7px 5px!important;
   }
 }
+
+/* ============================================================
+   FINAL OPTIMIZED UI LAYER
+   Portfolio cards + Google Drive video modal
+   This layer intentionally overrides conflicting legacy rules
+   above without changing the HTML/JS structure.
+   ============================================================ */
+
+/* ---------- Global responsive safety ---------- */
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+/* ---------- Desktop page breathing room ---------- */
+@media (min-width: 1101px) {
+  body {
+    padding-left: clamp(28px, 3vw, 56px) !important;
+    padding-right: clamp(28px, 3vw, 56px) !important;
+  }
+}
+
+@media (min-width: 1800px) {
+  body {
+    padding-left: clamp(40px, 4vw, 72px) !important;
+    padding-right: clamp(40px, 4vw, 72px) !important;
+  }
+}
+
+/* ---------- Floating rounded navigation ---------- */
+.nav {
+  position: sticky !important;
+  top: 16px !important;
+  z-index: 50 !important;
+  width: min(1380px, calc(100% - 8px)) !important;
+  max-width: none !important;
+  margin: 16px auto 0 !important;
+  border-radius: 999px !important;
+  padding: 12px clamp(18px, 2vw, 32px) !important;
+}
+
+@media (max-width: 760px) {
+  .nav {
+    width: 100% !important;
+    margin: 10px auto 0 !important;
+    top: 10px !important;
+    border-radius: 24px !important;
+    padding: 9px 12px !important;
+  }
+}
+
+/* ---------- Portfolio section headings ---------- */
+.section-head,
+.works-title,
+.brand-trust-head,
+.skill-header {
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+.skill-header {
+  align-items: center !important;
+}
+
+.skill-header > div,
+.section-head > div,
+.brand-trust-head > div {
+  width: 100%;
+}
+
+.skill-kicker,
+.skill-title {
+  text-align: center !important;
+}
+
+.section-note,
+.brand-trust-head p {
+  margin-inline: auto !important;
+  text-align: center !important;
+}
+
+/* ---------- Horizontal video rails ---------- */
+.skill-zone .card-grid,
+.zone-with-person .card-grid {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start;
+  width: 100%;
+  gap: clamp(12px, 1.2vw, 18px) !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  padding: 14px clamp(8px, 1.2vw, 18px) 20px !important;
+  margin: -14px 0 -20px !important;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: clamp(8px, 1.2vw, 18px);
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.skill-zone .card {
+  flex: 0 0 clamp(180px, 18vw, 245px) !important;
+  width: clamp(180px, 18vw, 245px) !important;
+  min-width: 0 !important;
+  scroll-snap-align: start;
+  text-align: center !important;
+}
+
+.skill-zone .thumb {
+  width: 100%;
+  aspect-ratio: 9 / 16 !important;
+  height: auto !important;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background: #e7dece !important;
+}
+
+.skill-zone .thumb img,
+.skill-zone .thumb video,
+.skill-zone .thumb iframe,
+.skill-zone .thumb .media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.skill-zone .card .mini {
+  display: block;
+  width: 100%;
+  text-align: center !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Prevent hover transforms from being clipped by the scroll rail. */
+.skill-zone .card-grid {
+  clip-path: none;
+}
+
+@media (max-width: 760px) {
+  .skill-zone .card-grid,
+  .zone-with-person .card-grid {
+    gap: 10px !important;
+    padding-inline: 10px !important;
+    scroll-padding-inline: 10px;
+  }
+
+  .skill-zone .card {
+    flex-basis: 78vw !important;
+    width: 78vw !important;
+    max-width: 330px;
+  }
+}
+
+@media (max-width: 520px) {
+  .skill-zone .card {
+    flex-basis: 78vw !important;
+    width: 78vw !important;
+    max-width: none;
+  }
+}
+
+/* ---------- Card hover refinement ---------- */
+.skill-zone .card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform .28s cubic-bezier(.2,.75,.25,1),
+    box-shadow .28s ease,
+    border-color .28s ease;
+  will-change: transform;
+}
+
+.skill-zone .card:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 18px 42px rgba(22,32,24,.14);
+  z-index: 5;
+}
+
+@media (hover: none) {
+  .skill-zone .card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* ============================================================
+   VIDEO MODAL — authoritative fix
+   Google Drive / YouTube / Vimeo iframe previews all use a
+   consistent 16:9 player. Removes the old 9:16 conflict.
+   ============================================================ */
+
+.modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1000 !important;
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: clamp(12px, 2vw, 28px) !important;
+  background: rgba(7,16,11,.82) !important;
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+.modal.open {
+  display: flex !important;
+}
+
+.modal-box {
+  width: min(1100px, calc(100vw - 32px)) !important;
+  max-width: 1100px !important;
+  max-height: calc(100vh - 32px) !important;
+  margin: auto !important;
+  background: var(--paper) !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  box-shadow: 0 30px 90px rgba(0,0,0,.42) !important;
+}
+
+.modal-head {
+  min-height: 64px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px;
+  padding: 14px 18px !important;
+}
+
+.modal-head strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: clamp(19px, 2vw, 26px) !important;
+}
+
+.close {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.video-box {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: 16 / 9 !important;
+  padding: 0 !important;
+  display: block !important;
+  position: relative;
+  overflow: hidden !important;
+  background: #17251c !important;
+}
+
+.video-box iframe {
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  border: 0 !important;
+}
+
+.video-box p {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: min(90%, 560px);
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+
+/* Large desktop: use more of the monitor without becoming excessive. */
+@media (min-width: 1400px) {
+  .modal-box {
+    width: min(1180px, calc(100vw - 80px)) !important;
+    max-width: 1180px !important;
+  }
+}
+
+/* Tablet */
+@media (max-width: 760px) {
+  .modal {
+    padding: 10px !important;
+  }
+
+  .modal-box {
+    width: calc(100vw - 20px) !important;
+    max-width: none !important;
+    max-height: calc(100vh - 20px) !important;
+    border-radius: 18px !important;
+  }
+
+  .modal-head {
+    min-height: 56px;
+    padding: 11px 13px !important;
+  }
+
+  .modal-head strong {
+    font-size: 18px !important;
+  }
+
+  .video-box {
+    aspect-ratio: 16 / 9 !important;
+  }
+}
+
+/* Small phones */
+@media (max-width: 520px) {
+  .modal {
+    padding: 7px !important;
+  }
+
+  .modal-box {
+    width: calc(100vw - 14px) !important;
+    max-height: calc(100vh - 14px) !important;
+    border-radius: 16px !important;
+  }
+
+  .modal-head {
+    min-height: 52px;
+    padding: 9px 11px !important;
+    gap: 8px;
+  }
+
+  .modal-head strong {
+    font-size: 16px !important;
+  }
+
+  .close {
+    padding: 8px 11px !important;
+    font-size: 11px;
+  }
+}
+
+/* ---------- Accessibility / interaction ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .card,
+  .btn,
+  .reveal,
+  .logo-track {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.card:focus-visible,
+.btn:focus-visible,
+.close:focus-visible,
+.nav-links a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ---------- Avoid accidental horizontal page overflow ---------- */
+.hero,
+section,
+.skill-zone,
+.brand-trust,
+.contact-card,
+.modal-box {
+  max-width: 100%;
+}
