@@ -635,66 +635,6 @@ body{
 }
 </style>
 
-
-<style>
-/* Desktop navigation — wider on large monitors while staying responsive */
-@media (min-width: 761px){
-  .nav{
-    width:calc(100% - clamp(28px, 5vw, 96px))!important;
-    max-width:none!important;
-    margin-left:auto!important;
-    margin-right:auto!important;
-    padding-left:clamp(18px, 2vw, 32px)!important;
-    padding-right:clamp(18px, 2vw, 32px)!important;
-  }
-
-  .nav-links{
-    gap:clamp(6px, .7vw, 12px)!important;
-  }
-
-  .nav-links a{
-    padding-left:clamp(11px, 1vw, 17px)!important;
-    padding-right:clamp(11px, 1vw, 17px)!important;
-  }
-}
-
-/* Keep tablet/mobile responsive — don't let desktop sizing leak in */
-@media (max-width:760px){
-  .nav{
-    width:100%!important;
-    max-width:none!important;
-    margin:10px auto 0!important;
-    padding:9px 12px!important;
-    border-radius:24px!important;
-  }
-
-  .nav-links{
-    width:100%;
-    justify-content:center!important;
-    flex-wrap:wrap;
-  }
-
-  .nav-links a{
-    padding:8px 6px!important;
-  }
-}
-
-@media (max-width:520px){
-  .nav{
-    padding:8px 10px!important;
-  }
-
-  .nav-links{
-    gap:4px!important;
-  }
-
-  .nav-links a{
-    font-size:10px!important;
-    padding:7px 5px!important;
-  }
-}
-</style>
-
 </head>
 <body>
   <nav class="nav">
