@@ -1345,3 +1345,219 @@ body.modal-open {
     transform: translate(-50%, -50%);
   }
 }
+
+
+/* ============================================================
+   FINAL CARD ORIENTATION REFINEMENT
+   Premiere Pro + After Effects = VERTICAL 9:16
+   Camera & Drone + AI Filmmaker = HORIZONTAL 16:9
+   ============================================================ */
+
+.vertical-zone .card {
+  flex: 0 0 clamp(180px, 18vw, 245px) !important;
+  width: clamp(180px, 18vw, 245px) !important;
+  min-width: 0 !important;
+}
+
+.vertical-zone .thumb {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 9 / 16 !important;
+  overflow: hidden !important;
+}
+
+.horizontal-zone .card {
+  flex: 0 0 clamp(280px, 32vw, 480px) !important;
+  width: clamp(280px, 32vw, 480px) !important;
+  min-width: 0 !important;
+}
+
+.horizontal-zone .thumb {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9 !important;
+  overflow: hidden !important;
+}
+
+.vertical-zone .thumb img,
+.vertical-zone .thumb video,
+.vertical-zone .thumb iframe,
+.horizontal-zone .thumb img,
+.horizontal-zone .thumb video,
+.horizontal-zone .thumb iframe {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+.horizontal-zone .card {
+  min-height: 0 !important;
+}
+
+.horizontal-zone .card-grid {
+  align-items: flex-start !important;
+}
+
+@media (min-width: 1200px) {
+  .horizontal-zone .card {
+    flex-basis: clamp(320px, 31vw, 500px) !important;
+    width: clamp(320px, 31vw, 500px) !important;
+  }
+
+  .vertical-zone .card {
+    flex-basis: clamp(190px, 17vw, 250px) !important;
+    width: clamp(190px, 17vw, 250px) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .vertical-zone .card {
+    flex: 0 0 78vw !important;
+    width: 78vw !important;
+    max-width: 330px !important;
+  }
+
+  .horizontal-zone .card {
+    flex: 0 0 88vw !important;
+    width: 88vw !important;
+    max-width: 430px !important;
+  }
+
+  .vertical-zone .thumb {
+    aspect-ratio: 9 / 16 !important;
+  }
+
+  .horizontal-zone .thumb {
+    aspect-ratio: 16 / 9 !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .vertical-zone .card {
+    flex-basis: 78vw !important;
+    width: 78vw !important;
+    max-width: none !important;
+  }
+
+  .horizontal-zone .card {
+    flex-basis: 88vw !important;
+    width: 88vw !important;
+    max-width: none !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .vertical-zone .card {
+    width: 80vw !important;
+    flex-basis: 80vw !important;
+  }
+
+  .horizontal-zone .card {
+    width: 90vw !important;
+    flex-basis: 90vw !important;
+  }
+}
+
+/* ============================================================
+   VIDEO MODAL ORIENTATION
+   ============================================================ */
+
+.modal.is-horizontal .modal-box {
+  width: min(1120px, calc(100vw - 40px)) !important;
+  max-width: 1120px !important;
+}
+
+.modal.is-horizontal .video-box {
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  aspect-ratio: 16 / 9 !important;
+  padding: 0 !important;
+  position: relative !important;
+  display: block !important;
+  overflow: hidden !important;
+  background: #000 !important;
+}
+
+.modal.is-horizontal .video-box iframe {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+}
+
+.modal.is-vertical .modal-box {
+  width: min(520px, calc(100vw - 32px)) !important;
+  max-width: 520px !important;
+  max-height: calc(100vh - 28px) !important;
+}
+
+.modal.is-vertical .video-box {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 9 / 16 !important;
+  max-height: calc(100vh - 90px) !important;
+  padding: 0 !important;
+  position: relative !important;
+  display: block !important;
+  overflow: hidden !important;
+  background: #000 !important;
+}
+
+.modal.is-vertical .video-box iframe {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+}
+
+@media (min-width: 1400px) {
+  .modal.is-horizontal .modal-box {
+    width: min(1240px, calc(100vw - 80px)) !important;
+    max-width: 1240px !important;
+  }
+
+  .modal.is-vertical .modal-box {
+    width: min(540px, calc(100vw - 80px)) !important;
+    max-width: 540px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .modal.is-horizontal .modal-box {
+    width: calc(100vw - 16px) !important;
+    max-width: none !important;
+    border-radius: 18px !important;
+  }
+
+  .modal.is-vertical .modal-box {
+    width: min(94vw, 430px) !important;
+    max-width: 430px !important;
+    max-height: calc(100vh - 16px) !important;
+    border-radius: 18px !important;
+  }
+
+  .modal.is-vertical .video-box {
+    max-height: calc(100vh - 70px) !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .modal.is-horizontal .modal-box {
+    width: calc(100vw - 12px) !important;
+    border-radius: 15px !important;
+  }
+
+  .modal.is-vertical .modal-box {
+    width: min(94vw, 390px) !important;
+    border-radius: 15px !important;
+  }
+
+  .modal.is-vertical .video-box {
+    max-height: calc(100vh - 64px) !important;
+  }
+}
